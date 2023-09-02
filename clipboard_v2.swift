@@ -5,13 +5,15 @@ class ClipboardMonitor {
 
     var changeCount = NSPasteboard.general.changeCount
 
-    let outputPath = "clipboard_history.txt"
-
     var recentInputs = [String](repeating: "", count: 5)
 
     var currentIndex = 0
 
-    init() {
+    var outputPath: String
+
+    init() {        
+        outputPath = "/Users/\(NSUserName())/Desktop/copyHistory.txt"
+        
         createFileIfNotExists()
 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] _ in
